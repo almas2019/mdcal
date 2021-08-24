@@ -4,7 +4,7 @@ from datetime import datetime
 import sys
 
 
-def create_calendar(year, month, with_isoweek=False, start_from_Sun=False, lang="en"):
+def create_calendar(year, month, with_isoweek=False, start_from_Sun=True, lang="en"):
     firstweekday = 6 if start_from_Sun else 0
 
     cal = calendar.Calendar(firstweekday=firstweekday)
@@ -33,21 +33,17 @@ def create_calendar(year, month, with_isoweek=False, start_from_Sun=False, lang=
     return mdstr
 
 
-def print_calendar(year, month, with_isoweek=False, start_from_Sun=False, lang="en"):
+def print_calendar(year, month, with_isoweek=False, start_from_Sun=True, lang="en"):
     print('{}/{}\n'.format(year, month))
     print(create_calendar(year, month, with_isoweek, start_from_Sun, lang))
 
 
 def get_dict(lang='en'):
     dic = {}
-    colnames = ['Week', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    colnames_ja = ['週', '月', '火', '水', '木', '金', '土', '日']
+    colnames = ['Week', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     if lang == 'en':
         for col in colnames:
             dic[col] = col
-    elif lang == 'ja':
-        for col, colja in zip(colnames, colnames_ja):
-            dic[col] = colja
     else:
         for col in colnames:
             dic[col] = col
